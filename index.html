@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kingston Academy Ltd – Vocational Training</title>
+  <meta name="description" content="We build professionals. Classroom, e‑learning and online courses from Kingston Academy Ltd." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0e0f12;
+      --card: #14161a;
+      --muted: #a6adbb;
+      --accent: #1f7aec;
+      --text: #e8ecf3;
+      --ring: rgba(31,122,236,.35);
+      --radius: 16px;
+      --maxw: 1120px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background:linear-gradient(180deg,#0b0c10 0%, #0e1015 100%);
+      color:var(--text);
+      line-height:1.5; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale
+    }
+    a{color:var(--text); text-decoration:none}
+    a:focus, button:focus{outline: 2px solid var(--ring); outline-offset:2px}
+    .container{max-width:var(--maxw); margin-inline:auto; padding:0 20px}
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(8px);
+      background:rgba(10,12,16,.6); border-bottom:1px solid rgba(255,255,255,.06)
+    }
+    .nav{display:flex; align-items:center; gap:24px; min-height:72px}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.2px}
+    .brand img{width:36px; height:36px; border-radius:8px}
+    nav{margin-left:auto}
+    .menu{display:flex; gap:18px; flex-wrap:wrap}
+    .menu a{opacity:.9}
+    .menu a:hover{opacity:1}
+    .cta{padding:10px 14px; background:var(--accent); color:white; border-radius:10px; font-weight:600}
+
+    /* Hero */
+    .hero{position:relative; display:grid; place-items:center; padding:96px 0 72px}
+    .hero-inner{display:grid; gap:18px; text-align:center}
+    .eyebrow{letter-spacing:.2em; text-transform:uppercase; color:var(--muted); font-weight:700; font-size:.85rem}
+    h1{margin:0; font-size:clamp(32px, 5vw, 56px); line-height:1.1}
+    .lead{color:var(--muted); max-width:720px; margin:0 auto}
+    .actions{display:flex; justify-content:center; gap:12px; margin-top:10px; flex-wrap:wrap}
+    .btn{padding:12px 16px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:transparent; color:var(--text); font-weight:600}
+    .btn.primary{background:var(--accent); border-color:var(--accent); color:#fff}
+
+    /* Sections */
+    section{padding:64px 0}
+    .section-title{font-size:clamp(22px, 3.5vw, 36px); margin:0 0 12px}
+    .section-kicker{color:var(--muted); margin:0 0 28px}
+
+    /* Cards */
+    .grid{display:grid; grid-template-columns:repeat(12, 1fr); gap:16px}
+    .card{grid-column:span 4; background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); overflow:hidden}
+    .card img{width:100%; height:180px; object-fit:cover}
+    .card .p{padding:16px}
+    .badge{display:inline-block; padding:4px 8px; background:rgba(31,122,236,.12); color:#cfe1ff; border:1px solid rgba(31,122,236,.25); border-radius:999px; font-size:.8rem; font-weight:600}
+
+    /* About split */
+    .split{display:grid; grid-template-columns:1.2fr 1fr; gap:24px; align-items:center}
+    .split img{width:100%; border-radius:var(--radius); border:1px solid rgba(255,255,255,.08)}
+
+    /* Carousel */
+    .carousel{position:relative; overflow:hidden; border-radius:var(--radius); border:1px solid rgba(255,255,255,.08)}
+    .track{display:flex; transition:transform .5s ease}
+    .slide{min-width:100%; height:280px; background:#0b0d12; display:grid; place-items:center}
+    .slide img{width:100%; height:100%; object-fit:cover}
+    .dots{display:flex; gap:6px; justify-content:center; margin-top:10px}
+    .dot{width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.25)}
+    .dot.active{background:#fff}
+
+    /* Footer */
+    footer{border-top:1px solid rgba(255,255,255,.08); padding:36px 0; color:var(--muted)}
+    .footer-grid{display:grid; grid-template-columns: 1fr auto; gap:16px; align-items:center}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .card{grid-column:span 6}
+      .split{grid-template-columns:1fr}
+    }
+    @media (max-width: 640px){
+      .menu{display:none}
+      .card{grid-column:span 12}
+      .hero{padding:80px 0 56px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="#home" class="brand">
+        <!-- Replace with your logo -->
+        <img src="images/logo.png" alt="Kingston Academy logo" />
+        <span>Kingston Academy Ltd</span>
+      </a>
+      <nav class="menu" aria-label="Main">
+        <a href="#courses">Our Courses</a>
+        <a href="#about">About Us</a>
+        <a href="#resources">Resources</a>
+        <a href="#contact" class="cta">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home">
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-inner">
+        <span class="eyebrow">We build professionals</span>
+        <h1 id="hero-title">Vocational Training that moves careers forward</h1>
+        <p class="lead">Classroom, e‑learning and online courses in security, compliance and workplace skills. Flexible schedules, accredited qualifications, expert tutors.</p>
+        <div class="actions">
+          <a class="btn primary" href="#courses">Browse Courses</a>
+          <a class="btn" href="#about">Who we are</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- COURSES OVERVIEW -->
+    <section id="courses" aria-labelledby="courses-title">
+      <div class="container">
+        <h2 class="section-title" id="courses-title">We offer</h2>
+        <p class="section-kicker">Choose how you learn: classroom, e‑learning, or fully online.</p>
+        <div class="grid">
+          <article class="card">
+            <img src="images/classroom.jpg" alt="Learners in a classroom" />
+            <div class="p">
+              <span class="badge">Classroom Courses</span>
+              <h3>Instructor‑led training</h3>
+              <p>Hands‑on sessions at our training centre with practical assessments.</p>
+              <p><a href="#classroom">Explore classroom courses →</a></p>
+            </div>
+          </article>
+          <article class="card">
+            <img src="images/elearning.jpg" alt="Laptop showing e‑learning" />
+            <div class="p">
+              <span class="badge">E‑Learning Courses</span>
+              <h3>Self‑paced modules</h3>
+              <p>Study anytime, anywhere with interactive lessons and quizzes.</p>
+              <p><a href="#elearning">Explore e‑learning →</a></p>
+            </div>
+          </article>
+          <article class="card">
+            <img src="images/online.jpg" alt="Live online training" />
+            <div class="p">
+              <span class="badge">Online Courses</span>
+              <h3>Live virtual classes</h3>
+              <p>Join live Zoom sessions with our tutors and get real‑time feedback.</p>
+              <p><a href="#online">Explore online →</a></p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" aria-labelledby="about-title">
+      <div class="container split">
+        <div>
+          <h2 class="section-title" id="about-title">About us</h2>
+          <p class="section-kicker">You’re about to embark on a journey of career discovery.</p>
+          <p>We deliver accredited qualifications with a focus on employability. Our trainers are industry practitioners who combine real‑world experience with engaging teaching.</p>
+          <p>Since 2017, we’ve supported learners across the UK with security, compliance and customer‑facing programmes. Speak to us about tailored courses for your team.</p>
+          <p><a class="btn" href="#contact">Get in touch</a></p>
+        </div>
+        <img src="images/about.jpg" alt="Tutor supporting a learner" />
+      </div>
+    </section>
+
+    <!-- GALLERY / HIGHLIGHTS (Carousel) -->
+    <section aria-labelledby="gallery-title">
+      <div class="container">
+        <h2 class="section-title" id="gallery-title">Inside our training</h2>
+        <div class="carousel" id="carousel">
+          <div class="track" id="track">
+            <div class="slide"><img src="images/slide1.jpg" alt="Practical assessment" /></div>
+            <div class="slide"><img src="images/slide2.jpg" alt="Learners in workshop" /></div>
+            <div class="slide"><img src="images/slide3.jpg" alt="Online class in session" /></div>
+          </div>
+        </div>
+        <div class="dots" id="dots" aria-label="Slide pagination"></div>
+      </div>
+    </section>
+
+    <!-- FEEDBACK / TESTIMONIALS (static placeholders) -->
+    <section id="feedback" aria-labelledby="feedback-title">
+      <div class="container">
+        <h2 class="section-title" id="feedback-title">Feedback from our customers</h2>
+        <div class="grid">
+          <article class="card" style="grid-column:span 6">
+            <div class="p">
+              <p>“Clear, practical teaching and great support throughout the course.”</p>
+              <p>— <strong>Hardeep S.</strong></p>
+            </div>
+          </article>
+          <article class="card" style="grid-column:span 6">
+            <div class="p">
+              <p>“Professional and friendly team. The mock tests really helped.”</p>
+              <p>— <strong>Rida F.</strong></p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" aria-labelledby="contact-title">
+    <div class="container footer-grid">
+      <div>
+        <strong id="contact-title">Kingston Academy Ltd</strong><br/>
+        <span>© <span id="year"></span> Kingston Academy Ltd</span>
+      </div>
+      <div>
+        <a href="#" aria-label="Facebook" title="Facebook">Facebook</a> ·
+        <a href="#" aria-label="Instagram" title="Instagram">Instagram</a> ·
+        <a href="#resources" title="Resources">Resources</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple image carousel
+    (function(){
+      const track = document.getElementById('track');
+      const dotsWrap = document.getElementById('dots');
+      const slides = Array.from(track.children);
+      let index = 0;
+
+      function renderDots(){
+        dotsWrap.innerHTML = '';
+        slides.forEach((_, i)=>{
+          const d = document.createElement('button');
+          d.className = 'dot' + (i===index?' active':'');
+          d.setAttribute('aria-label', 'Go to slide ' + (i+1));
+          d.addEventListener('click', ()=>go(i));
+          dotsWrap.appendChild(d);
+        });
+      }
+
+      function go(i){
+        index = (i+slides.length) % slides.length;
+        track.style.transform = `translateX(-${index*100}%)`;
+        renderDots();
+      }
+
+      let t = setInterval(()=>go(index+1), 5000);
+      ['mouseenter','focusin'].forEach(ev=>track.addEventListener(ev, ()=>clearInterval(t)));
+      ['mouseleave','focusout'].forEach(ev=>track.addEventListener(ev, ()=>t = setInterval(()=>go(index+1), 5000)));
+      renderDots();
+
+      // Year in footer
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
+  </script>
+
+  <!--
+    HOW TO USE THIS FILE
+    1) Drop this file in a new folder.
+    2) Create an /images folder and replace the placeholder images (classroom.jpg, elearning.jpg, online.jpg, about.jpg, slide1.jpg, slide2.jpg, slide3.jpg) with your own.
+    3) Update text content, links and social URLs.
+    4) Deploy anywhere (Netlify, Vercel, GitHub Pages, your host). No build step required.
+
+    NOTES
+    • This is a static approximation of your Wix homepage structure (hero, course categories, about, gallery, testimonials, footer). Dynamic Wix features (blog, groups, bookings, members area, store, payments, forms) require rebuilding on the new platform.
+    • For multi‑page sites, duplicate this file per page and adjust the nav/sections.
+  -->
+</body>
+</html>

@@ -8,13 +8,13 @@
 <link rel="icon" href="images/KAlogo.png" />
 <style>
   :root{
-    --navy:#0b0e5a;         /* from your logo background */
+    --navy:#0b0e5a;
     --navy-2:#0f135f;
     --ink:#0b0d20;
     --paper:#ffffff;
     --muted:#a8b0c9;
     --stroke:#1a1f72;
-    --accent:#39c6ff;       /* subtle accent to complement navy */
+    --accent:#39c6ff;
     --card:#0f144a;
     --shadow: 0 14px 40px rgba(0,0,0,.28);
     --r:14px;
@@ -30,7 +30,6 @@
   }
   a{color:inherit; text-decoration:none}
   img{max-width:100%; display:block}
-
   .container{width:min(1180px,92%); margin-inline:auto}
 
   /* NAV */
@@ -191,11 +190,14 @@
             <option value="sia">SIA & Security</option>
             <option value="firstaid">First Aid</option>
             <option value="cctv">CCTV</option>
-            <option value="teaching">Teaching & Assessing</option>
+            <option value="ct">Counter-Terror (ACT)</option>
+            <option value="esol">ESOL</option>
+            <option value="licensing">Licensing</option>
           </select>
         </div>
       </div>
       <div id="courseCards" class="cards"></div>
+      <p class="muted reveal" style="margin-top:10px">Note: ACT courses open on the ProtectUK site.</p>
     </div>
   </section>
 
@@ -316,58 +318,81 @@
   </div>
 
 <script>
-/* ---------- DATA ---------- */
+/* ---------- CONFIG ---------- */
+const STRIPE_LINK = "https://book.stripe.com/8x200c9refqo4yz6HIdQQ00";
+
+/* ---------- DATA: COURSES ---------- */
 const COURSES = [
-  {
-    id:"door-supervisor",
-    name:"SIA Door Supervisor",
-    cat:"sia",
-    price:"£399",
+  // SIA & Security
+  { id:"door-supervisor", name:"SIA Door Supervisor", cat:"sia", price:"£399",
     img:"https://images.unsplash.com/photo-1584433144859-1fc3ab64a957?q=80&w=1600&auto=format&fit=crop",
     desc:"Full qualification including conflict management and—where tutor-qualified—physical intervention.",
-  },
-  {
-    id:"security-officer",
-    name:"SIA Security Officer",
-    cat:"sia",
-    price:"£299",
+    bookUrl: STRIPE_LINK },
+  { id:"door-supervisor-topup", name:"Door Supervisor (Top-Up)", cat:"sia", price:"£149",
+    img:"https://images.unsplash.com/photo-1573167243872-43c6433b9d40?q=80&w=1600&auto=format&fit=crop",
+    desc:"Refresher for existing DS licence holders to meet current SIA requirements.",
+    bookUrl: STRIPE_LINK },
+  { id:"close-protection", name:"Close Protection", cat:"sia", price:"£1,499",
+    img:"https://images.unsplash.com/photo-1511735111819-9a3f7709049c?q=80&w=1600&auto=format&fit=crop",
+    desc:"Comprehensive CP qualification: threat assessment, surveillance awareness, operational planning.",
+    bookUrl: STRIPE_LINK },
+  { id:"close-protection-topup", name:"Close Protection (Top-Up)", cat:"sia", price:"£349",
+    img:"https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1600&auto=format&fit=crop",
+    desc:"Update training for existing CP licence holders covering current standards.",
+    bookUrl: STRIPE_LINK },
+  { id:"security-officer", name:"SIA Security Officer", cat:"sia", price:"£299",
     img:"https://images.unsplash.com/photo-1516321165247-4aa89a48be28?q=80&w=1600&auto=format&fit=crop",
-    desc:"Core guarding skills, legislation, search & incident reporting for non-DS roles."
-  },
-  {
-    id:"cctv-operator",
-    name:"CCTV Operator (PSS)",
-    cat:"cctv",
-    price:"£269",
-    img:"https://images.unsplash.com/photo-1555617981-dac3880c5b68?q=80&w=1600&auto=format&fit=crop",
-    desc:"Public Space Surveillance qualification for control room and monitoring roles."
-  },
-  {
-    id:"efaw",
-    name:"Emergency First Aid at Work",
-    cat:"firstaid",
-    price:"£99",
+    desc:"Core guarding skills, legislation, search and incident reporting.",
+    bookUrl: STRIPE_LINK },
+  { id:"security-officer-topup", name:"Security Officer (Top-Up)", cat:"sia", price:"£129",
+    img:"https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1600&auto=format&fit=crop",
+    desc:"Refresher for existing S/O licence holders to meet current SIA requirements.",
+    bookUrl: STRIPE_LINK },
+
+  // CCTV
+  { id:"cctv-operator", name:"CCTV Operator (Public Space Surveillance)", cat:"cctv", price:"£269",
+    img:"https://images.unsplash.com/photo-1566241440091-ec10de8db2e1?q=80&w=1600&auto=format&fit=crop",
+    desc:"Control room operations, legislation, and evidence handling.",
+    bookUrl: STRIPE_LINK },
+
+  // First Aid
+  { id:"first-aid", name:"First Aid at Work (FAW)", cat:"firstaid", price:"£249",
     img:"https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?q=80&w=1600&auto=format&fit=crop",
-    desc:"One-day course covering scene assessment, CPR/AED, and workplace first aid."
-  },
-  {
-    id:"aet",
-    name:"Award in Education & Training (AET)",
-    cat:"teaching",
-    price:"£349",
-    img:"https://images.unsplash.com/photo-1554774853-b415df9eeb92?q=80&w=1600&auto=format&fit=crop",
-    desc:"Entry-level teaching qualification for aspiring trainers and workplace instructors."
-  },
-  {
-    id:"cava",
-    name:"Certificate in Assessing Vocational Achievement (CAVA)",
-    cat:"teaching",
-    price:"£599",
-    img:"https://images.unsplash.com/photo-1558024920-b41e8ba76f82?q=80&w=1600&auto=format&fit=crop",
-    desc:"Become a qualified assessor in work and classroom settings."
-  }
+    desc:"Three-day FAW qualification for workplace first aiders.",
+    bookUrl: STRIPE_LINK },
+  { id:"efaw", name:"Emergency First Aid at Work (EFAW)", cat:"firstaid", price:"£99",
+    img:"https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=1600&auto=format&fit=crop",
+    desc:"One-day course covering essential life-saving skills and incidents.",
+    bookUrl: STRIPE_LINK },
+
+  // Counter-Terror (ACT) – external
+  { id:"act-awareness", name:"ACT Awareness eLearning (ProtectUK)", cat:"ct", price:"Free",
+    img:"https://images.unsplash.com/photo-1524567497598-066b4c9505fb?q=80&w=1600&auto=format&fit=crop",
+    desc:"Counter-terrorism awareness for staff and venues.",
+    bookUrl:"https://protectuk.police.uk" },
+  { id:"act-security", name:"ACT Security eLearning (ProtectUK)", cat:"ct", price:"Free",
+    img:"https://images.unsplash.com/photo-1503676382389-4809596d5290?q=80&w=1600&auto=format&fit=crop",
+    desc:"Enhanced CT content for security professionals.",
+    bookUrl:"https://protectuk.police.uk" },
+
+  // ESOL
+  { id:"esol-l1", name:"ESOL Level 1", cat:"esol", price:"£299",
+    img:"https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1600&auto=format&fit=crop",
+    desc:"English skills for work and study at Level 1.",
+    bookUrl: STRIPE_LINK },
+  { id:"esol-l2", name:"ESOL Level 2", cat:"esol", price:"£349",
+    img:"https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1600&auto=format&fit=crop",
+    desc:"Upper-intermediate English for professional contexts.",
+    bookUrl: STRIPE_LINK },
+
+  // Licensing
+  { id:"personal-licence", name:"Personal Licence Holder (APLH)", cat:"licensing", price:"£149",
+    img:"https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa?q=80&w=1600&auto=format&fit=crop",
+    desc:"Alcohol licensing qualification for premises supervisors and staff.",
+    bookUrl: STRIPE_LINK }
 ];
 
+/* ---------- DATA: JOBS ---------- */
 const JOBS = [
   {
     id:"sia-trainer",
@@ -413,6 +438,11 @@ function el(tag, attrs={}, ...children){
 
 /* ---------- COURSES RENDER ---------- */
 function courseCard(c){
+  const external = /^https?:\/\//i.test(c.bookUrl) && !c.bookUrl.includes('stripe.com') && !c.bookUrl.startsWith('#');
+  const bookAttrs = external
+    ? { href:c.bookUrl, target:"_blank", rel:"noopener", class:"btn brand" }
+    : { href:c.bookUrl || "#", target:"_blank", rel:"noopener", class:"btn brand" };
+
   return el('article',{class:'card reveal'},
     el('img',{class:'media', src:c.img, alt:c.name}),
     el('div',{class:'pad'},
@@ -424,9 +454,9 @@ function courseCard(c){
       el('div',{style:'display:flex; justify-content:space-between; align-items:center; margin-top:10px'},
         el('div',{class:'price'}, c.price),
         el('div',{},
-          el('a',{href:'#contact', class:'btn brand'}, 'Enquire'),
+          el('a',{href:'#contact', class:'btn'}, 'Enquire'),
           ' ',
-          el('a',{href:'#courses', class:'btn', onclick:()=>alert('Checkout can be linked to Stripe or your booking system.')}, 'Book')
+          el('a', bookAttrs, external ? 'Open on ProtectUK' : 'Book')
         )
       )
     )
@@ -434,15 +464,15 @@ function courseCard(c){
 }
 function renderCourses(){
   const root = document.getElementById('courseCards'); root.innerHTML='';
-  const term = document.getElementById('courseSearch').value.trim().toLowerCase();
-  const filt = document.getElementById('courseFilter').value;
+  const term = (document.getElementById('courseSearch')?.value || '').trim().toLowerCase();
+  const filt = (document.getElementById('courseFilter')?.value || 'all');
   const list = COURSES.filter(c=>{
     const okCat = (filt==='all'||c.cat===filt);
     const okTerm = !term || (c.name.toLowerCase().includes(term) || c.desc.toLowerCase().includes(term));
     return okCat && okTerm;
   });
   list.forEach(c=> root.append(courseCard(c)));
-  revealOnScroll();
+  revealOnScroll && revealOnScroll();
 }
 
 /* ---------- JOBS RENDER ---------- */
@@ -461,7 +491,7 @@ function jobCard(j){
         el('div',{},
           el('a',{href:`mailto:careers@kingstonacademy.example?subject=Application: ${encodeURIComponent(j.title)}`, class:'btn brand'}, 'Apply'),
           ' ',
-          el('a',{href:'#contact', class:'btn'}, 'Ask')
+          el('a',{href:`mailto:careers@kingstonacademy.example?subject=Enquiry: ${encodeURIComponent(j.title)}`, class:'btn'}, 'Ask')
         )
       )
     )
@@ -469,15 +499,15 @@ function jobCard(j){
 }
 function renderJobs(){
   const root = document.getElementById('jobList'); root.innerHTML='';
-  const term = document.getElementById('jobSearch').value.trim().toLowerCase();
-  const filt = document.getElementById('jobFilter').value;
+  const term = (document.getElementById('jobSearch')?.value || '').trim().toLowerCase();
+  const filt = (document.getElementById('jobFilter')?.value || 'all');
   const list = JOBS.filter(j=>{
     const okType = (filt==='all' || j.type===filt);
     const okTerm = !term || (j.title.toLowerCase().includes(term) || j.desc.toLowerCase().includes(term) || j.location.toLowerCase().includes(term));
     return okType && okTerm;
   });
   list.forEach(j=> root.append(jobCard(j)));
-  revealOnScroll();
+  revealOnScroll && revealOnScroll();
 }
 
 /* ---------- REVEAL ON SCROLL ---------- */

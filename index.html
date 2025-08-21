@@ -1,278 +1,542 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kingston Academy Ltd – Vocational Training</title>
-  <meta name="description" content="We build professionals. Classroom, e‑learning and online courses from Kingston Academy Ltd." />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg: #0e0f12;
-      --card: #14161a;
-      --muted: #a6adbb;
-      --accent: #1f7aec;
-      --text: #e8ecf3;
-      --ring: rgba(31,122,236,.35);
-      --radius: 16px;
-      --maxw: 1120px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      background:linear-gradient(180deg,#0b0c10 0%, #0e1015 100%);
-      color:var(--text);
-      line-height:1.5; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale
-    }
-    a{color:var(--text); text-decoration:none}
-    a:focus, button:focus{outline: 2px solid var(--ring); outline-offset:2px}
-    .container{max-width:var(--maxw); margin-inline:auto; padding:0 20px}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kingston Academy Ltd</title>
+<meta name="description" content="Kingston Academy Ltd — professional security training and development." />
+<link rel="icon" href="images/KAlogo.png" />
+<style>
+  :root{
+    --navy:#0b0e5a;         /* from your logo background */
+    --navy-2:#0f135f;
+    --ink:#0b0d20;
+    --paper:#ffffff;
+    --muted:#a8b0c9;
+    --stroke:#1a1f72;
+    --accent:#39c6ff;       /* subtle accent to complement navy */
+    --card:#0f144a;
+    --shadow: 0 14px 40px rgba(0,0,0,.28);
+    --r:14px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
+    background: radial-gradient(1200px 400px at 50% -100px, #16207a 0%, var(--navy) 40%, #0a0e55 100%);
+    color: var(--paper);
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+  a{color:inherit; text-decoration:none}
+  img{max-width:100%; display:block}
 
-    /* Header */
-    header{
-      position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(8px);
-      background:rgba(10,12,16,.6); border-bottom:1px solid rgba(255,255,255,.06)
-    }
-    .nav{display:flex; align-items:center; gap:24px; min-height:72px}
-    .brand{display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.2px}
-    .brand img{width:36px; height:36px; border-radius:8px}
-    nav{margin-left:auto}
-    .menu{display:flex; gap:18px; flex-wrap:wrap}
-    .menu a{opacity:.9}
-    .menu a:hover{opacity:1}
-    .cta{padding:10px 14px; background:var(--accent); color:white; border-radius:10px; font-weight:600}
+  .container{width:min(1180px,92%); margin-inline:auto}
 
-    /* Hero */
-    .hero{position:relative; display:grid; place-items:center; padding:96px 0 72px}
-    .hero-inner{display:grid; gap:18px; text-align:center}
-    .eyebrow{letter-spacing:.2em; text-transform:uppercase; color:var(--muted); font-weight:700; font-size:.85rem}
-    h1{margin:0; font-size:clamp(32px, 5vw, 56px); line-height:1.1}
-    .lead{color:var(--muted); max-width:720px; margin:0 auto}
-    .actions{display:flex; justify-content:center; gap:12px; margin-top:10px; flex-wrap:wrap}
-    .btn{padding:12px 16px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:transparent; color:var(--text); font-weight:600}
-    .btn.primary{background:var(--accent); border-color:var(--accent); color:#fff}
+  /* NAV */
+  .nav{
+    position:sticky; top:0; z-index:60;
+    background: color-mix(in srgb, var(--navy) 84%, transparent);
+    backdrop-filter: blur(8px) saturate(1.1);
+    border-bottom:1px solid color-mix(in srgb, var(--paper) 8%, transparent);
+  }
+  .nav .inner{display:flex; align-items:center; gap:18px; padding:10px 0}
+  .brand{display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.4px}
+  .brand img{width:44px; height:44px}
+  .nav-links{margin-left:auto; display:flex; gap:14px; align-items:center}
+  .pill{font-size:14px; color:#eaf0ff; border:1px solid color-mix(in srgb,var(--paper) 12%, transparent); padding:8px 12px; border-radius:999px}
+  .btn{border:1px solid color-mix(in srgb,var(--paper) 14%, transparent); padding:10px 14px; border-radius:10px; background:linear-gradient(180deg,#1a2183,#11176d); color:#fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.05); cursor:pointer; transition:.2s transform,.2s border}
+  .btn:hover{transform:translateY(-1px); border-color:var(--accent)}
+  .btn.brand{background:linear-gradient(135deg,#2bb8ff,#6bdcff); color:#00203a; font-weight:700}
+  .toggle{display:none}
 
-    /* Sections */
-    section{padding:64px 0}
-    .section-title{font-size:clamp(22px, 3.5vw, 36px); margin:0 0 12px}
-    .section-kicker{color:var(--muted); margin:0 0 28px}
+  /* HERO */
+  header.hero{
+    padding:80px 0 60px; position:relative; overflow:hidden; isolation:isolate;
+    background:
+      radial-gradient(800px 300px at 10% 0%, rgba(255,255,255,.07), transparent 60%),
+      radial-gradient(800px 300px at 90% 0%, rgba(255,255,255,.07), transparent 60%);
+  }
+  .grid{display:grid; gap:26px; grid-template-columns:1.08fr .92fr; align-items:center}
+  h1{font-size: clamp(32px,4.2vw,54px); line-height:1.1; margin:0}
+  .lead{color:#d9def1; font-size:clamp(16px,1.5vw,18px); margin:14px 0 22px}
+  .hero-media{aspect-ratio:4/3; border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,.08); background:#091042}
+  .hero-media > .img{
+    width:100%; height:100%; background:url('https://images.unsplash.com/photo-1503676382389-4809596d5290?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+    filter:saturate(1.05) contrast(1.05);
+  }
+  .badges{display:flex; gap:10px; flex-wrap:wrap}
+  .badge{border:1px solid rgba(255,255,255,.15); padding:6px 10px; border-radius:999px; font-size:12px; color:#e7ecff; background:rgba(255,255,255,.04)}
 
-    /* Cards */
-    .grid{display:grid; grid-template-columns:repeat(12, 1fr); gap:16px}
-    .card{grid-column:span 4; background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); overflow:hidden}
-    .card img{width:100%; height:180px; object-fit:cover}
-    .card .p{padding:16px}
-    .badge{display:inline-block; padding:4px 8px; background:rgba(31,122,236,.12); color:#cfe1ff; border:1px solid rgba(31,122,236,.25); border-radius:999px; font-size:.8rem; font-weight:600}
+  /* SECTIONS */
+  section{padding:72px 0}
+  h2{font-size: clamp(26px,3.2vw,36px); margin:0 0 8px}
+  .muted{color:#c3c9e6; opacity:.86}
+  .section-head{display:flex; justify-content:space-between; align-items:end; gap:18px; margin-bottom:18px}
+  .cards{display:grid; gap:16px; grid-template-columns: repeat(12, 1fr)}
+  .card{
+    grid-column: span 4; background:linear-gradient(180deg,var(--card),#0a0f3d); border:1px solid rgba(255,255,255,.08);
+    border-radius:14px; overflow:hidden; box-shadow:var(--shadow); display:flex; flex-direction:column; min-height:100%;
+    transition:.25s transform,.25s box-shadow,.25s border
+  }
+  .card:hover{transform:translateY(-4px); border-color:var(--accent); box-shadow:0 18px 48px rgba(0,0,0,.45)}
+  .card img.media{aspect-ratio:16/9; object-fit:cover}
+  .pad{padding:14px 14px 16px}
+  .price{font-weight:700}
+  .tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px}
+  .tag{font-size:11px; color:#001a2d; background:linear-gradient(135deg,#2bb8ff,#6bdcff); padding:4px 8px; border-radius:999px}
 
-    /* About split */
-    .split{display:grid; grid-template-columns:1.2fr 1fr; gap:24px; align-items:center}
-    .split img{width:100%; border-radius:var(--radius); border:1px solid rgba(255,255,255,.08)}
+  /* Filters/Search */
+  .tools{display:flex; gap:10px; flex-wrap:wrap; margin:10px 0 18px}
+  .input, select{
+    background:#0a0f3f; color:#eaf0ff; border:1px solid rgba(255,255,255,.12);
+    padding:10px 12px; border-radius:10px; min-width:180px
+  }
 
-    /* Carousel */
-    .carousel{position:relative; overflow:hidden; border-radius:var(--radius); border:1px solid rgba(255,255,255,.08)}
-    .track{display:flex; transition:transform .5s ease}
-    .slide{min-width:100%; height:280px; background:#0b0d12; display:grid; place-items:center}
-    .slide img{width:100%; height:100%; object-fit:cover}
-    .dots{display:flex; gap:6px; justify-content:center; margin-top:10px}
-    .dot{width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.25)}
-    .dot.active{background:#fff}
+  /* JOBS */
+  .job{border:1px solid rgba(255,255,255,.12); background:#0b1040; border-radius:12px; padding:14px; display:grid; gap:6px}
+  .job .meta{color:#c8cfeb; font-size:13px}
 
-    /* Footer */
-    footer{border-top:1px solid rgba(255,255,255,.08); padding:36px 0; color:var(--muted)}
-    .footer-grid{display:grid; grid-template-columns: 1fr auto; gap:16px; align-items:center}
+  /* CONTACT */
+  form .row{display:grid; gap:10px; grid-template-columns:1fr 1fr}
+  form input, form textarea{
+    background:#0a0f3f; color:#eaf0ff; border:1px solid rgba(255,255,255,.12); padding:12px; border-radius:10px
+  }
+  form textarea{min-height:140px; resize:vertical}
 
-    /* Responsive */
-    @media (max-width: 980px){
-      .card{grid-column:span 6}
-      .split{grid-template-columns:1fr}
-    }
-    @media (max-width: 640px){
-      .menu{display:none}
-      .card{grid-column:span 12}
-      .hero{padding:80px 0 56px}
-    }
-  </style>
+  /* FOOTER */
+  footer{background:#080c38; border-top:1px solid rgba(255,255,255,.1); padding:34px 0; color:#dee6ff}
+  .foot-grid{display:grid; gap:18px; grid-template-columns: 2fr 1fr 1fr}
+
+  /* Reveal animation */
+  .reveal{opacity:0; transform:translateY(14px); transition:.6s ease}
+  .reveal.show{opacity:1; transform:none}
+
+  /* Modal (Terms) */
+  .modal{position:fixed; inset:0; display:none; place-items:center; background:rgba(2,4,18,.72); z-index:80; padding:20px}
+  .modal.open{display:grid}
+  .sheet{width:min(900px,96vw); max-height:90vh; overflow:auto; background:#0b1040; border:1px solid rgba(255,255,255,.15); border-radius:16px; box-shadow:var(--shadow)}
+  .sheet header{display:flex; justify-content:space-between; align-items:center; padding:12px 16px; border-bottom:1px solid rgba(255,255,255,.12)}
+  .sheet .x{background:transparent; border:none; color:#c9d1ff; font-size:22px; cursor:pointer}
+  .sheet .body{padding:16px}
+
+  /* Responsive */
+  @media (max-width: 980px){
+    .grid{grid-template-columns:1fr}
+    .card{grid-column: span 6}
+    .nav-links{display:none}
+    .toggle{display:inline-flex; margin-left:auto}
+    .nav.open .nav-links{display:flex; flex-direction:column; gap:10px; padding:10px 0}
+  }
+  @media (max-width: 640px){
+    .card{grid-column: span 12}
+    form .row{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr}
+  }
+</style>
 </head>
 <body>
-  <header>
-    <div class="container nav">
-      <a href="#home" class="brand">
-        <!-- Replace with your logo -->
-        <img src="images/logo.png" alt="Kingston Academy logo" />
-        <span>Kingston Academy Ltd</span>
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="container inner">
+      <a class="brand" href="#home" aria-label="Kingston Academy">
+        <img src="images/KAlogo.png" alt="Kingston Academy logo" />
+        <span>KINGSTON ACADEMY LTD</span>
       </a>
-      <nav class="menu" aria-label="Main">
-        <a href="#courses">Our Courses</a>
-        <a href="#about">About Us</a>
-        <a href="#resources">Resources</a>
-        <a href="#contact" class="cta">Contact</a>
-      </nav>
+      <div class="nav-links" role="navigation" aria-label="Primary">
+        <a class="pill" href="#home">Home</a>
+        <a class="pill" href="#courses">Courses</a>
+        <a class="pill" href="#jobs">Jobs</a>
+        <a class="pill" href="#contact">Contact</a>
+        <a class="btn brand" href="#courses">Book a Course</a>
+      </div>
+      <button class="btn toggle" aria-expanded="false" aria-controls="nav">Menu</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="home" class="hero">
+    <div class="container grid">
+      <div>
+        <h1 class="reveal">Training built on standards. Careers built on skill.</h1>
+        <p class="lead reveal">Kingston Academy delivers professional, accredited training pathways in the security sector and beyond—aligned to awarding-body requirements and delivered by industry practitioners.</p>
+        <div class="badges reveal">
+          <span class="badge">SIA-aligned delivery</span>
+          <span class="badge">Experienced assessors</span>
+          <span class="badge">Nationwide venues</span>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:16px" class="reveal">
+          <a class="btn brand" href="#courses">Explore Courses</a>
+          <a class="btn" href="#jobs">View Jobs</a>
+        </div>
+      </div>
+      <div class="hero-media reveal" aria-hidden="true">
+        <div class="img"></div>
+      </div>
     </div>
   </header>
 
-  <main id="home">
-    <!-- HERO -->
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="container hero-inner">
-        <span class="eyebrow">We build professionals</span>
-        <h1 id="hero-title">Vocational Training that moves careers forward</h1>
-        <p class="lead">Classroom, e‑learning and online courses in security, compliance and workplace skills. Flexible schedules, accredited qualifications, expert tutors.</p>
-        <div class="actions">
-          <a class="btn primary" href="#courses">Browse Courses</a>
-          <a class="btn" href="#about">Who we are</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- COURSES OVERVIEW -->
-    <section id="courses" aria-labelledby="courses-title">
-      <div class="container">
-        <h2 class="section-title" id="courses-title">We offer</h2>
-        <p class="section-kicker">Choose how you learn: classroom, e‑learning, or fully online.</p>
-        <div class="grid">
-          <article class="card">
-            <img src="images/classroom.jpg" alt="Learners in a classroom" />
-            <div class="p">
-              <span class="badge">Classroom Courses</span>
-              <h3>Instructor‑led training</h3>
-              <p>Hands‑on sessions at our training centre with practical assessments.</p>
-              <p><a href="#classroom">Explore classroom courses →</a></p>
-            </div>
-          </article>
-          <article class="card">
-            <img src="images/elearning.jpg" alt="Laptop showing e‑learning" />
-            <div class="p">
-              <span class="badge">E‑Learning Courses</span>
-              <h3>Self‑paced modules</h3>
-              <p>Study anytime, anywhere with interactive lessons and quizzes.</p>
-              <p><a href="#elearning">Explore e‑learning →</a></p>
-            </div>
-          </article>
-          <article class="card">
-            <img src="images/online.jpg" alt="Live online training" />
-            <div class="p">
-              <span class="badge">Online Courses</span>
-              <h3>Live virtual classes</h3>
-              <p>Join live Zoom sessions with our tutors and get real‑time feedback.</p>
-              <p><a href="#online">Explore online →</a></p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" aria-labelledby="about-title">
-      <div class="container split">
+  <!-- COURSES -->
+  <section id="courses">
+    <div class="container">
+      <div class="section-head">
         <div>
-          <h2 class="section-title" id="about-title">About us</h2>
-          <p class="section-kicker">You’re about to embark on a journey of career discovery.</p>
-          <p>We deliver accredited qualifications with a focus on employability. Our trainers are industry practitioners who combine real‑world experience with engaging teaching.</p>
-          <p>Since 2017, we’ve supported learners across the UK with security, compliance and customer‑facing programmes. Speak to us about tailored courses for your team.</p>
-          <p><a class="btn" href="#contact">Get in touch</a></p>
+          <h2 class="reveal">Courses</h2>
+          <div class="muted reveal">Accredited programmes designed for real-world roles.</div>
         </div>
-        <img src="images/about.jpg" alt="Tutor supporting a learner" />
+        <div class="tools reveal">
+          <input class="input" id="courseSearch" placeholder="Search courses…" aria-label="Search courses" />
+          <select id="courseFilter" aria-label="Filter by category">
+            <option value="all">All categories</option>
+            <option value="sia">SIA & Security</option>
+            <option value="firstaid">First Aid</option>
+            <option value="cctv">CCTV</option>
+            <option value="teaching">Teaching & Assessing</option>
+          </select>
+        </div>
       </div>
-    </section>
+      <div id="courseCards" class="cards"></div>
+    </div>
+  </section>
 
-    <!-- GALLERY / HIGHLIGHTS (Carousel) -->
-    <section aria-labelledby="gallery-title">
-      <div class="container">
-        <h2 class="section-title" id="gallery-title">Inside our training</h2>
-        <div class="carousel" id="carousel">
-          <div class="track" id="track">
-            <div class="slide"><img src="images/slide1.jpg" alt="Practical assessment" /></div>
-            <div class="slide"><img src="images/slide2.jpg" alt="Learners in workshop" /></div>
-            <div class="slide"><img src="images/slide3.jpg" alt="Online class in session" /></div>
+  <!-- JOBS -->
+  <section id="jobs">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="reveal">Jobs</h2>
+          <div class="muted reveal">Join our teaching and operations team.</div>
+        </div>
+        <div class="tools reveal">
+          <input class="input" id="jobSearch" placeholder="Search jobs…" aria-label="Search jobs"/>
+          <select id="jobFilter" aria-label="Filter by type">
+            <option value="all">All types</option>
+            <option value="trainer">Trainer</option>
+            <option value="assessor">Assessor/IQA</option>
+            <option value="ops">Operations</option>
+          </select>
+        </div>
+      </div>
+      <div id="jobList" class="cards"></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="reveal">Contact us</h2>
+          <div class="muted reveal">Tell us what you need—we’ll reply within one working day.</div>
+        </div>
+      </div>
+      <div class="grid">
+        <form class="reveal" onsubmit="event.preventDefault(); alert('Thanks! We will get back to you shortly.'); this.reset();">
+          <div class="row">
+            <input name="name" required placeholder="Your name" aria-label="Your name" />
+            <input name="email" type="email" required placeholder="Email address" aria-label="Email" />
+          </div>
+          <div class="row">
+            <input name="phone" placeholder="Phone (optional)" aria-label="Phone"/>
+            <select name="topic" aria-label="Topic">
+              <option>General enquiry</option>
+              <option>Book a course</option>
+              <option>Corporate training</option>
+              <option>Careers</option>
+            </select>
+          </div>
+          <textarea name="message" required placeholder="How can we help?"></textarea>
+          <div style="display:flex; gap:10px; align-items:center; margin-top:10px">
+            <button class="btn brand" type="submit">Send message</button>
+            <span class="muted small">Or email: info@kingstonacademy.example</span>
+          </div>
+        </form>
+        <div class="reveal">
+          <div class="card" style="height:100%">
+            <img class="media" src="https://images.unsplash.com/photo-1557800636-894a64c1696f?q=80&w=1600&auto=format&fit=crop" alt="Classroom training" />
+            <div class="pad">
+              <h3>Visit</h3>
+              <p class="muted">Kingston Academy Ltd<br/>7 Bell Yard, London, WC2A 2JR</p>
+              <h3>Call</h3>
+              <p class="muted">+44 7700 900237</p>
+              <h3>Hours</h3>
+              <p class="muted">Mon–Fri 09:00–17:30</p>
+            </div>
           </div>
         </div>
-        <div class="dots" id="dots" aria-label="Slide pagination"></div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- FEEDBACK / TESTIMONIALS (static placeholders) -->
-    <section id="feedback" aria-labelledby="feedback-title">
-      <div class="container">
-        <h2 class="section-title" id="feedback-title">Feedback from our customers</h2>
-        <div class="grid">
-          <article class="card" style="grid-column:span 6">
-            <div class="p">
-              <p>“Clear, practical teaching and great support throughout the course.”</p>
-              <p>— <strong>Hardeep S.</strong></p>
-            </div>
-          </article>
-          <article class="card" style="grid-column:span 6">
-            <div class="p">
-              <p>“Professional and friendly team. The mock tests really helped.”</p>
-              <p>— <strong>Rida F.</strong></p>
-            </div>
-          </article>
+  <!-- FOOTER -->
+  <footer>
+    <div class="container foot-grid">
+      <div>
+        <div class="brand" style="margin-bottom:10px">
+          <img src="images/KAlogo.png" alt="Kingston Academy logo" />
+          <span>KINGSTON ACADEMY LTD</span>
         </div>
+        <div style="font-size:13px; opacity:.88">© <span id="year"></span> Kingston Academy Ltd. All rights reserved.</div>
       </div>
-    </section>
-  </main>
-
-  <footer id="contact" aria-labelledby="contact-title">
-    <div class="container footer-grid">
-      <div>
-        <strong id="contact-title">Kingston Academy Ltd</strong><br/>
-        <span>© <span id="year"></span> Kingston Academy Ltd</span>
+      <div style="font-size:14px">
+        <strong>Pages</strong><br/>
+        <a href="#home">Home</a><br/>
+        <a href="#courses">Courses</a><br/>
+        <a href="#jobs">Jobs</a><br/>
+        <a href="#contact">Contact</a>
       </div>
-      <div>
-        <a href="#" aria-label="Facebook" title="Facebook">Facebook</a> ·
-        <a href="#" aria-label="Instagram" title="Instagram">Instagram</a> ·
-        <a href="#resources" title="Resources">Resources</a>
+      <div style="font-size:14px">
+        <strong>Legal</strong><br/>
+        <a href="#" id="openTerms">Terms &amp; Conditions</a><br/>
+        <a href="#" id="openPrivacy">Privacy</a>
       </div>
     </div>
   </footer>
 
-  <script>
-    // Simple image carousel
-    (function(){
-      const track = document.getElementById('track');
-      const dotsWrap = document.getElementById('dots');
-      const slides = Array.from(track.children);
-      let index = 0;
+  <!-- TERMS / PRIVACY MODAL -->
+  <div class="modal" id="modal">
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <header>
+        <strong id="modalTitle">Terms &amp; Conditions</strong>
+        <button class="x" aria-label="Close" onclick="Modal.close()">×</button>
+      </header>
+      <div class="body" id="modalBody">
+        <h3>1. About Kingston Academy Ltd</h3>
+        <p>We provide accredited training and related services. By booking a course, you agree to these terms.</p>
+        <h3>2. Bookings &amp; payments</h3>
+        <p>Fees are payable at checkout. Places are confirmed on receipt of payment. You may transfer to another date with at least 5 working days’ notice.</p>
+        <h3>3. Attendance &amp; certification</h3>
+        <p>Learners must attend all required hours and provide valid ID. Certification is issued by the awarding body on successful completion.</p>
+        <h3>4. Cancellations &amp; refunds</h3>
+        <p>Refunds are at our discretion where statutory rights apply. No-shows are non-refundable.</p>
+        <h3>5. Data &amp; privacy</h3>
+        <p>We process personal data to manage bookings and certification. See Privacy.</p>
+      </div>
+    </div>
+  </div>
 
-      function renderDots(){
-        dotsWrap.innerHTML = '';
-        slides.forEach((_, i)=>{
-          const d = document.createElement('button');
-          d.className = 'dot' + (i===index?' active':'');
-          d.setAttribute('aria-label', 'Go to slide ' + (i+1));
-          d.addEventListener('click', ()=>go(i));
-          dotsWrap.appendChild(d);
-        });
-      }
+<script>
+/* ---------- DATA ---------- */
+const COURSES = [
+  {
+    id:"door-supervisor",
+    name:"SIA Door Supervisor",
+    cat:"sia",
+    price:"£399",
+    img:"https://images.unsplash.com/photo-1584433144859-1fc3ab64a957?q=80&w=1600&auto=format&fit=crop",
+    desc:"Full qualification including conflict management and—where tutor-qualified—physical intervention.",
+  },
+  {
+    id:"security-officer",
+    name:"SIA Security Officer",
+    cat:"sia",
+    price:"£299",
+    img:"https://images.unsplash.com/photo-1516321165247-4aa89a48be28?q=80&w=1600&auto=format&fit=crop",
+    desc:"Core guarding skills, legislation, search & incident reporting for non-DS roles."
+  },
+  {
+    id:"cctv-operator",
+    name:"CCTV Operator (PSS)",
+    cat:"cctv",
+    price:"£269",
+    img:"https://images.unsplash.com/photo-1555617981-dac3880c5b68?q=80&w=1600&auto=format&fit=crop",
+    desc:"Public Space Surveillance qualification for control room and monitoring roles."
+  },
+  {
+    id:"efaw",
+    name:"Emergency First Aid at Work",
+    cat:"firstaid",
+    price:"£99",
+    img:"https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?q=80&w=1600&auto=format&fit=crop",
+    desc:"One-day course covering scene assessment, CPR/AED, and workplace first aid."
+  },
+  {
+    id:"aet",
+    name:"Award in Education & Training (AET)",
+    cat:"teaching",
+    price:"£349",
+    img:"https://images.unsplash.com/photo-1554774853-b415df9eeb92?q=80&w=1600&auto=format&fit=crop",
+    desc:"Entry-level teaching qualification for aspiring trainers and workplace instructors."
+  },
+  {
+    id:"cava",
+    name:"Certificate in Assessing Vocational Achievement (CAVA)",
+    cat:"teaching",
+    price:"£599",
+    img:"https://images.unsplash.com/photo-1558024920-b41e8ba76f82?q=80&w=1600&auto=format&fit=crop",
+    desc:"Become a qualified assessor in work and classroom settings."
+  }
+];
 
-      function go(i){
-        index = (i+slides.length) % slides.length;
-        track.style.transform = `translateX(-${index*100}%)`;
-        renderDots();
-      }
+const JOBS = [
+  {
+    id:"sia-trainer",
+    title:"SIA Trainer (Door Supervisor)",
+    type:"trainer",
+    location:"London / Hybrid",
+    pay:"£180–£220/day (contract) or £32–38k (perm)",
+    img:"https://images.unsplash.com/photo-1604773404447-43cf8a7d5c2a?q=80&w=1600&auto=format&fit=crop",
+    desc:"Plan and deliver SIA DS units; assess, invigilate and maintain awarding-body compliance. AET/CAVA required; PI qualification desirable."
+  },
+  {
+    id:"assessor-iqa",
+    title:"Assessor / IQA (Security)",
+    type:"assessor",
+    location:"Remote with travel",
+    pay:"£32–40k DOE",
+    img:"https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1600&auto=format&fit=crop",
+    desc:"Conduct learner assessments and sampling; standardisation; EQA action tracking. CAVA/IQA essential."
+  },
+  {
+    id:"ops-coordinator",
+    title:"Operations Coordinator",
+    type:"ops",
+    location:"London",
+    pay:"£28–32k",
+    img:"https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1600&auto=format&fit=crop",
+    desc:"Schedule courses, manage venues and materials, handle learner onboarding and certification submissions."
+  }
+];
 
-      let t = setInterval(()=>go(index+1), 5000);
-      ['mouseenter','focusin'].forEach(ev=>track.addEventListener(ev, ()=>clearInterval(t)));
-      ['mouseleave','focusout'].forEach(ev=>track.addEventListener(ev, ()=>t = setInterval(()=>go(index+1), 5000)));
-      renderDots();
+/* ---------- HELPERS ---------- */
+function el(tag, attrs={}, ...children){
+  const n = document.createElement(tag);
+  for(const [k,v] of Object.entries(attrs)){
+    if(k==='class') n.className=v;
+    else if(k.startsWith('on') && typeof v==='function') n.addEventListener(k.slice(2), v);
+    else if(k==='html') n.innerHTML=v;
+    else n.setAttribute(k,v);
+  }
+  children.forEach(c=> n.append(c));
+  return n;
+}
 
-      // Year in footer
-      document.getElementById('year').textContent = new Date().getFullYear();
-    })();
-  </script>
+/* ---------- COURSES RENDER ---------- */
+function courseCard(c){
+  return el('article',{class:'card reveal'},
+    el('img',{class:'media', src:c.img, alt:c.name}),
+    el('div',{class:'pad'},
+      el('h3',{}, c.name),
+      el('div',{class:'muted'}, c.desc),
+      el('div',{class:'tags'},
+        el('span',{class:'tag'}, c.cat.toUpperCase())
+      ),
+      el('div',{style:'display:flex; justify-content:space-between; align-items:center; margin-top:10px'},
+        el('div',{class:'price'}, c.price),
+        el('div',{},
+          el('a',{href:'#contact', class:'btn brand'}, 'Enquire'),
+          ' ',
+          el('a',{href:'#courses', class:'btn', onclick:()=>alert('Checkout can be linked to Stripe or your booking system.')}, 'Book')
+        )
+      )
+    )
+  );
+}
+function renderCourses(){
+  const root = document.getElementById('courseCards'); root.innerHTML='';
+  const term = document.getElementById('courseSearch').value.trim().toLowerCase();
+  const filt = document.getElementById('courseFilter').value;
+  const list = COURSES.filter(c=>{
+    const okCat = (filt==='all'||c.cat===filt);
+    const okTerm = !term || (c.name.toLowerCase().includes(term) || c.desc.toLowerCase().includes(term));
+    return okCat && okTerm;
+  });
+  list.forEach(c=> root.append(courseCard(c)));
+  revealOnScroll();
+}
 
-  <!--
-    HOW TO USE THIS FILE
-    1) Drop this file in a new folder.
-    2) Create an /images folder and replace the placeholder images (classroom.jpg, elearning.jpg, online.jpg, about.jpg, slide1.jpg, slide2.jpg, slide3.jpg) with your own.
-    3) Update text content, links and social URLs.
-    4) Deploy anywhere (Netlify, Vercel, GitHub Pages, your host). No build step required.
+/* ---------- JOBS RENDER ---------- */
+function jobCard(j){
+  return el('article',{class:'card reveal'},
+    el('img',{class:'media', src:j.img, alt:j.title}),
+    el('div',{class:'pad'},
+      el('h3',{}, j.title),
+      el('div',{class:'muted'}, j.desc),
+      el('div',{class:'tags'},
+        el('span',{class:'tag'}, j.type.toUpperCase()),
+        el('span',{class:'tag'}, j.location)
+      ),
+      el('div',{style:'display:flex; justify-content:space-between; align-items:center; margin-top:10px'},
+        el('div',{class:'price'}, j.pay),
+        el('div',{},
+          el('a',{href:`mailto:careers@kingstonacademy.example?subject=Application: ${encodeURIComponent(j.title)}`, class:'btn brand'}, 'Apply'),
+          ' ',
+          el('a',{href:'#contact', class:'btn'}, 'Ask')
+        )
+      )
+    )
+  );
+}
+function renderJobs(){
+  const root = document.getElementById('jobList'); root.innerHTML='';
+  const term = document.getElementById('jobSearch').value.trim().toLowerCase();
+  const filt = document.getElementById('jobFilter').value;
+  const list = JOBS.filter(j=>{
+    const okType = (filt==='all' || j.type===filt);
+    const okTerm = !term || (j.title.toLowerCase().includes(term) || j.desc.toLowerCase().includes(term) || j.location.toLowerCase().includes(term));
+    return okType && okTerm;
+  });
+  list.forEach(j=> root.append(jobCard(j)));
+  revealOnScroll();
+}
 
-    NOTES
-    • This is a static approximation of your Wix homepage structure (hero, course categories, about, gallery, testimonials, footer). Dynamic Wix features (blog, groups, bookings, members area, store, payments, forms) require rebuilding on the new platform.
-    • For multi‑page sites, duplicate this file per page and adjust the nav/sections.
-  -->
+/* ---------- REVEAL ON SCROLL ---------- */
+let observer;
+function revealOnScroll(){
+  observer && observer.disconnect();
+  observer = new IntersectionObserver(entries=>{
+    entries.forEach(e=> { if(e.isIntersecting) e.target.classList.add('show'); });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=> observer.observe(el));
+}
+
+/* ---------- SMOOTH NAV + MOBILE ---------- */
+const nav = document.getElementById('nav');
+document.querySelector('.toggle').addEventListener('click', (e)=>{
+  const open = nav.classList.toggle('open');
+  e.currentTarget.setAttribute('aria-expanded', String(open));
+});
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click', e=>{
+    const id = a.getAttribute('href').slice(1);
+    const node = document.getElementById(id);
+    if(node){
+      e.preventDefault();
+      window.scrollTo({top: node.getBoundingClientRect().top + window.scrollY - 70, behavior:'smooth'});
+      nav.classList.remove('open');
+    }
+  });
+});
+
+/* ---------- MODAL (Terms/Privacy) ---------- */
+const Modal = {
+  node: document.getElementById('modal'),
+  title: document.getElementById('modalTitle'),
+  body: document.getElementById('modalBody'),
+  open(title, html){ this.title.textContent = title; this.body.innerHTML = html; this.node.classList.add('open'); },
+  close(){ this.node.classList.remove('open'); }
+};
+document.getElementById('openTerms').addEventListener('click', (e)=>{ e.preventDefault();
+  Modal.open('Terms & Conditions', document.getElementById('modalBody').innerHTML);
+});
+document.getElementById('openPrivacy').addEventListener('click', (e)=>{ e.preventDefault();
+  Modal.open('Privacy', `
+    <h3>Privacy Policy</h3>
+    <p>We process personal data to manage enquiries, bookings, and certification with awarding bodies. We keep records securely and only for as long as necessary.</p>
+    <p>You can request access, correction, or deletion by emailing privacy@kingstonacademy.example.</p>
+  `);
+});
+document.getElementById('modal').addEventListener('click', (e)=>{ if(e.target.id==='modal') Modal.close(); });
+
+/* ---------- INIT ---------- */
+renderCourses();
+renderJobs();
+revealOnScroll();
+document.getElementById('year').textContent = new Date().getFullYear();
+document.getElementById('courseSearch').addEventListener('input', renderCourses);
+document.getElementById('courseFilter').addEventListener('change', renderCourses);
+document.getElementById('jobSearch').addEventListener('input', renderJobs);
+document.getElementById('jobFilter').addEventListener('change', renderJobs);
+</script>
 </body>
 </html>

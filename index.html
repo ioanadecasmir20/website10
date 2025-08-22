@@ -248,7 +248,7 @@
           <textarea name="message" required placeholder="How can we help?"></textarea>
           <div style="display:flex; gap:10px; align-items:center; margin-top:10px">
             <button class="btn brand" type="submit">Send message</button>
-            <span class="muted small">Or email: info@kingstonacademy.example</span>
+            <span class="muted small">Or email: info@kingstonacademy.co.uk</span>
           </div>
         </form>
         <div class="reveal">
@@ -459,7 +459,7 @@ function jobCard(j){
       el('div',{style:'display:flex; justify-content:space-between; align-items:center; margin-top:10px'},
         el('div',{class:'price'}, j.pay),
         el('div',{},
-          el('a',{href:`mailto:careers@kingstonacademy.example?subject=Application: ${encodeURIComponent(j.title)}`, class:'btn brand'}, 'Apply'),
+          el('a',{href:`mailto:info@kingstonacademy.co.uk?subject=Application: ${encodeURIComponent(j.title)}`, class:'btn brand'}, 'Apply'),
           ' ',
           el('a',{href:'#contact', class:'btn'}, 'Ask')
         )

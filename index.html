@@ -8,19 +8,21 @@
 <link rel="icon" href="images/KAlogo.png" />
 <style>
   :root{
-    --navy:#0b0e5a;         /* from your logo background */
+    --navy:#0b0e5a;
     --navy-2:#0f135f;
     --ink:#0b0d20;
     --paper:#ffffff;
     --muted:#a8b0c9;
     --stroke:#1a1f72;
-    --accent:#39c6ff;       /* subtle accent to complement navy */
+    --accent:#39c6ff;
     --card:#0f144a;
     --shadow: 0 14px 40px rgba(0,0,0,.28);
     --r:14px;
   }
+
   *{box-sizing:border-box}
   html,body{margin:0}
+
   body{
     font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
     background: radial-gradient(1200px 400px at 50% -100px, #16207a 0%, var(--navy) 40%, #0a0e55 100%);
@@ -28,106 +30,332 @@
     line-height:1.55;
     overflow-x:hidden;
   }
+
   a{color:inherit; text-decoration:none}
   img{max-width:100%; display:block}
-
   .container{width:min(1180px,92%); margin-inline:auto}
 
-  /* NAV */
   .nav{
-    position:sticky; top:0; z-index:60;
+    position:sticky;
+    top:0;
+    z-index:60;
     background: color-mix(in srgb, var(--navy) 84%, transparent);
     backdrop-filter: blur(8px) saturate(1.1);
     border-bottom:1px solid color-mix(in srgb, var(--paper) 8%, transparent);
   }
-  .nav .inner{display:flex; align-items:center; gap:18px; padding:10px 0}
-  .brand{display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.4px}
-  .brand img{width:44px; height:44px}
-  .nav-links{margin-left:auto; display:flex; gap:14px; align-items:center}
-  .pill{font-size:14px; color:#eaf0ff; border:1px solid color-mix(in srgb,var(--paper) 12%, transparent); padding:8px 12px; border-radius:999px}
-  .btn{border:1px solid color-mix(in srgb,var(--paper) 14%, transparent); padding:10px 14px; border-radius:10px; background:linear-gradient(180deg,#1a2183,#11176d); color:#fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.05); cursor:pointer; transition:.2s transform,.2s border}
-  .btn:hover{transform:translateY(-1px); border-color:var(--accent)}
-  .btn.brand{background:linear-gradient(135deg,#2bb8ff,#6bdcff); color:#00203a; font-weight:700}
+
+  .nav .inner{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    padding:10px 0;
+  }
+
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:700;
+    letter-spacing:.4px;
+  }
+
+  .brand img{
+    width:44px;
+    height:44px;
+  }
+
+  .nav-links{
+    margin-left:auto;
+    display:flex;
+    gap:14px;
+    align-items:center;
+  }
+
+  .pill{
+    font-size:14px;
+    color:#eaf0ff;
+    border:1px solid color-mix(in srgb,var(--paper) 12%, transparent);
+    padding:8px 12px;
+    border-radius:999px;
+  }
+
+  .btn{
+    border:1px solid color-mix(in srgb,var(--paper) 14%, transparent);
+    padding:10px 14px;
+    border-radius:10px;
+    background:linear-gradient(180deg,#1a2183,#11176d);
+    color:#fff;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.05);
+    cursor:pointer;
+    transition:.2s transform,.2s border;
+  }
+
+  .btn:hover{
+    transform:translateY(-1px);
+    border-color:var(--accent);
+  }
+
+  .btn.brand{
+    background:linear-gradient(135deg,#2bb8ff,#6bdcff);
+    color:#00203a;
+    font-weight:700;
+  }
+
   .toggle{display:none}
 
-  /* HERO */
   header.hero{
-    padding:80px 0 60px; position:relative; overflow:hidden; isolation:isolate;
+    padding:80px 0 60px;
+    position:relative;
+    overflow:hidden;
+    isolation:isolate;
     background:
       radial-gradient(800px 300px at 10% 0%, rgba(255,255,255,.07), transparent 60%),
       radial-gradient(800px 300px at 90% 0%, rgba(255,255,255,.07), transparent 60%);
   }
-  .grid{display:grid; gap:26px; grid-template-columns:1.08fr .92fr; align-items:center}
-  h1{font-size: clamp(32px,4.2vw,54px); line-height:1.1; margin:0}
-  .lead{color:#d9def1; font-size:clamp(16px,1.5vw,18px); margin:14px 0 22px}
-  .hero-media{aspect-ratio:4/3; border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,.08); background:#091042}
+
+  .grid{
+    display:grid;
+    gap:26px;
+    grid-template-columns:1.08fr .92fr;
+    align-items:center;
+  }
+
+  h1{
+    font-size: clamp(32px,4.2vw,54px);
+    line-height:1.1;
+    margin:0;
+  }
+
+  .lead{
+    color:#d9def1;
+    font-size:clamp(16px,1.5vw,18px);
+    margin:14px 0 22px;
+  }
+
+  .hero-media{
+    aspect-ratio:4/3;
+    border-radius:16px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.08);
+    background:#091042;
+  }
+
   .hero-media > .img{
-    width:100%; height:100%; background:url('images/hero.jpg') center/cover no-repeat;
+    width:100%;
+    height:100%;
+    background:url('images/hero.jpg') center/cover no-repeat;
     filter:saturate(1.05) contrast(1.05);
   }
-  .badges{display:flex; gap:10px; flex-wrap:wrap}
-  .badge{border:1px solid rgba(255,255,255,.15); padding:6px 10px; border-radius:999px; font-size:12px; color:#e7ecff; background:rgba(255,255,255,.04)}
 
-  /* SECTIONS */
-  section{padding:72px 0}
-  h2{font-size: clamp(26px,3.2vw,36px); margin:0 0 8px}
-  .muted{color:#c3c9e6; opacity:.86}
-  .section-head{display:flex; justify-content:space-between; align-items:end; gap:18px; margin-bottom:18px}
-  .cards{display:grid; gap:16px; grid-template-columns: repeat(12, 1fr)}
-  .card{
-    grid-column: span 4; background:linear-gradient(180deg,var(--card),#0a0f3d); border:1px solid rgba(255,255,255,.08);
-    border-radius:14px; overflow:hidden; box-shadow:var(--shadow); display:flex; flex-direction:column; min-height:100%;
-    transition:.25s transform,.25s box-shadow,.25s border
+  .badges{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
   }
-  .card:hover{transform:translateY(-4px); border-color:var(--accent); box-shadow:0 18px 48px rgba(0,0,0,.45)}
-  .card img.media{aspect-ratio:16/9; object-fit:cover}
+
+  .badge{
+    border:1px solid rgba(255,255,255,.15);
+    padding:6px 10px;
+    border-radius:999px;
+    font-size:12px;
+    color:#e7ecff;
+    background:rgba(255,255,255,.04);
+  }
+
+  section{padding:72px 0}
+
+  h2{
+    font-size: clamp(26px,3.2vw,36px);
+    margin:0 0 8px;
+  }
+
+  .muted{
+    color:#c3c9e6;
+    opacity:.86;
+  }
+
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    gap:18px;
+    margin-bottom:18px;
+  }
+
+  .cards{
+    display:grid;
+    gap:16px;
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  .card{
+    grid-column: span 4;
+    background:linear-gradient(180deg,var(--card),#0a0f3d);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    display:flex;
+    flex-direction:column;
+    min-height:100%;
+    transition:.25s transform,.25s box-shadow,.25s border;
+  }
+
+  .card:hover{
+    transform:translateY(-4px);
+    border-color:var(--accent);
+    box-shadow:0 18px 48px rgba(0,0,0,.45);
+  }
+
+  .card img.media{
+    aspect-ratio:16/9;
+    object-fit:cover;
+  }
+
   .pad{padding:14px 14px 16px}
   .price{font-weight:700}
-  .tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px}
-  .tag{font-size:11px; color:#001a2d; background:linear-gradient(135deg,#2bb8ff,#6bdcff); padding:4px 8px; border-radius:999px}
 
-  /* Filters/Search */
-  .tools{display:flex; gap:10px; flex-wrap:wrap; margin:10px 0 18px}
+  .tags{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:8px;
+  }
+
+  .tag{
+    font-size:11px;
+    color:#001a2d;
+    background:linear-gradient(135deg,#2bb8ff,#6bdcff);
+    padding:4px 8px;
+    border-radius:999px;
+  }
+
+  .tools{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin:10px 0 18px;
+  }
+
   .input, select{
-    background:#0a0f3f; color:#eaf0ff; border:1px solid rgba(255,255,255,.12);
-    padding:10px 12px; border-radius:10px; min-width:180px
+    background:#0a0f3f;
+    color:#eaf0ff;
+    border:1px solid rgba(255,255,255,.12);
+    padding:10px 12px;
+    border-radius:10px;
+    min-width:180px;
   }
 
-  /* JOBS */
-  .job{border:1px solid rgba(255,255,255,.12); background:#0b1040; border-radius:12px; padding:14px; display:grid; gap:6px}
-  .job .meta{color:#c8cfeb; font-size:13px}
+  .job{
+    border:1px solid rgba(255,255,255,.12);
+    background:#0b1040;
+    border-radius:12px;
+    padding:14px;
+    display:grid;
+    gap:6px;
+  }
 
-  /* CONTACT */
-  form .row{display:grid; gap:10px; grid-template-columns:1fr 1fr}
+  .job .meta{
+    color:#c8cfeb;
+    font-size:13px;
+  }
+
+  form .row{
+    display:grid;
+    gap:10px;
+    grid-template-columns:1fr 1fr;
+  }
+
   form input, form textarea{
-    background:#0a0f3f; color:#eaf0ff; border:1px solid rgba(255,255,255,.12); padding:12px; border-radius:10px
+    background:#0a0f3f;
+    color:#eaf0ff;
+    border:1px solid rgba(255,255,255,.12);
+    padding:12px;
+    border-radius:10px;
   }
-  form textarea{min-height:140px; resize:vertical}
 
-  /* FOOTER */
-  footer{background:#080c38; border-top:1px solid rgba(255,255,255,.1); padding:34px 0; color:#dee6ff}
-  .foot-grid{display:grid; gap:18px; grid-template-columns: 2fr 1fr 1fr}
+  form textarea{
+    min-height:140px;
+    resize:vertical;
+  }
 
-  /* Reveal animation */
-  .reveal{opacity:0; transform:translateY(14px); transition:.6s ease}
-  .reveal.show{opacity:1; transform:none}
+  footer{
+    background:#080c38;
+    border-top:1px solid rgba(255,255,255,.1);
+    padding:34px 0;
+    color:#dee6ff;
+  }
 
-  /* Modal (Terms) */
-  .modal{position:fixed; inset:0; display:none; place-items:center; background:rgba(2,4,18,.72); z-index:80; padding:20px}
+  .foot-grid{
+    display:grid;
+    gap:18px;
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(14px);
+    transition:.6s ease;
+  }
+
+  .reveal.show{
+    opacity:1;
+    transform:none;
+  }
+
+  .modal{
+    position:fixed;
+    inset:0;
+    display:none;
+    place-items:center;
+    background:rgba(2,4,18,.72);
+    z-index:80;
+    padding:20px;
+  }
+
   .modal.open{display:grid}
-  .sheet{width:min(900px,96vw); max-height:90vh; overflow:auto; background:#0b1040; border:1px solid rgba(255,255,255,.15); border-radius:16px; box-shadow:var(--shadow)}
-  .sheet header{display:flex; justify-content:space-between; align-items:center; padding:12px 16px; border-bottom:1px solid rgba(255,255,255,.12)}
-  .sheet .x{background:transparent; border:none; color:#c9d1ff; font-size:22px; cursor:pointer}
+
+  .sheet{
+    width:min(900px,96vw);
+    max-height:90vh;
+    overflow:auto;
+    background:#0b1040;
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:16px;
+    box-shadow:var(--shadow);
+  }
+
+  .sheet header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 16px;
+    border-bottom:1px solid rgba(255,255,255,.12);
+  }
+
+  .sheet .x{
+    background:transparent;
+    border:none;
+    color:#c9d1ff;
+    font-size:22px;
+    cursor:pointer;
+  }
+
   .sheet .body{padding:16px}
 
-  /* Responsive */
   @media (max-width: 980px){
     .grid{grid-template-columns:1fr}
     .card{grid-column: span 6}
     .nav-links{display:none}
     .toggle{display:inline-flex; margin-left:auto}
-    .nav.open .nav-links{display:flex; flex-direction:column; gap:10px; padding:10px 0}
+    .nav.open .nav-links{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      padding:10px 0;
+    }
   }
+
   @media (max-width: 640px){
     .card{grid-column: span 12}
     form .row{grid-template-columns:1fr}
@@ -135,48 +363,51 @@
   }
 </style>
 </head>
+
 <body>
-  <!-- NAV -->
   <nav class="nav" id="nav">
     <div class="container inner">
       <a class="brand" href="#home" aria-label="Kingston Academy">
         <img src="images/KAlogo.png" alt="Kingston Academy logo" />
         <span>KINGSTON ACADEMY LTD</span>
       </a>
+
       <div class="nav-links" role="navigation" aria-label="Primary">
         <a class="pill" href="#home">Home</a>
         <a class="pill" href="#courses">Courses</a>
         <a class="pill" href="#jobs">Jobs</a>
         <a class="pill" href="#contact">Contact</a>
-        <a class="btn brand" href="#courses">Book a Course</a>
+        <a class="btn brand" href="#contact">Enquire</a>
       </div>
+
       <button class="btn toggle" aria-expanded="false" aria-controls="nav">Menu</button>
     </div>
   </nav>
 
-  <!-- HERO -->
   <header id="home" class="hero">
     <div class="container grid">
       <div>
         <h1 class="reveal">Training built on standards. Careers built on skill.</h1>
         <p class="lead reveal">Kingston Academy delivers professional, accredited training pathways in the security sector and beyond—aligned to awarding-body requirements and delivered by industry practitioners.</p>
+
         <div class="badges reveal">
           <span class="badge">SIA-aligned delivery</span>
           <span class="badge">Experienced assessors</span>
           <span class="badge">Nationwide venues</span>
         </div>
+
         <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:16px" class="reveal">
           <a class="btn brand" href="#courses">Explore Courses</a>
           <a class="btn" href="#jobs">View Jobs</a>
         </div>
       </div>
+
       <div class="hero-media reveal" aria-hidden="true">
         <div class="img"></div>
       </div>
     </div>
   </header>
 
-  <!-- COURSES -->
   <section id="courses">
     <div class="container">
       <div class="section-head">
@@ -184,6 +415,7 @@
           <h2 class="reveal">Courses</h2>
           <div class="muted reveal">Accredited programmes designed for real-world roles.</div>
         </div>
+
         <div class="tools reveal">
           <input class="input" id="courseSearch" placeholder="Search courses…" aria-label="Search courses" />
           <select id="courseFilter" aria-label="Filter by category">
@@ -192,14 +424,15 @@
             <option value="firstaid">First Aid</option>
             <option value="cctv">CCTV</option>
             <option value="teaching">Teaching & Assessing</option>
+            <option value="construction">Construction</option>
           </select>
         </div>
       </div>
+
       <div id="courseCards" class="cards"></div>
     </div>
   </section>
 
-  <!-- JOBS -->
   <section id="jobs">
     <div class="container">
       <div class="section-head">
@@ -207,6 +440,7 @@
           <h2 class="reveal">Jobs</h2>
           <div class="muted reveal">Join our teaching and operations team.</div>
         </div>
+
         <div class="tools reveal">
           <input class="input" id="jobSearch" placeholder="Search jobs…" aria-label="Search jobs"/>
           <select id="jobFilter" aria-label="Filter by type">
@@ -217,11 +451,11 @@
           </select>
         </div>
       </div>
+
       <div id="jobList" class="cards"></div>
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact">
     <div class="container">
       <div class="section-head">
@@ -230,35 +464,46 @@
           <div class="muted reveal">Tell us what you need—we’ll reply within one working day.</div>
         </div>
       </div>
+
       <div class="grid">
-        <form class="reveal" onsubmit="event.preventDefault(); alert('Thanks! We will get back to you shortly.'); this.reset();">
+        <form class="reveal" id="contactForm">
           <div class="row">
             <input name="name" required placeholder="Your name" aria-label="Your name" />
             <input name="email" type="email" required placeholder="Email address" aria-label="Email" />
           </div>
+
           <div class="row">
             <input name="phone" placeholder="Phone (optional)" aria-label="Phone"/>
             <select name="topic" aria-label="Topic">
               <option>General enquiry</option>
-              <option>Book a course</option>
+              <option>Course enquiry</option>
               <option>Corporate training</option>
               <option>Careers</option>
             </select>
           </div>
+
           <textarea name="message" required placeholder="How can we help?"></textarea>
+
           <div style="display:flex; gap:10px; align-items:center; margin-top:10px">
             <button class="btn brand" type="submit">Send message</button>
             <span class="muted small">Or email: info@kingstonacademy.co.uk</span>
           </div>
         </form>
+
         <div class="reveal">
           <div class="card" style="height:100%">
             <img class="media" src="images/contact-visit.jpg" alt="Classroom training" />
+
             <div class="pad">
               <h3>Visit</h3>
-              <p class="muted">Kingston Academy Ltd<br/>Maple House, High St, Potters Bar EN6 5BS</p>
+              <p class="muted">Kingston Academy Ltd<br/>Maple House, High Street, Potters Bar, England, EN6 5BS</p>
+
               <h3>Call</h3>
-              <p class="muted">+44 7700 900237</p>
+              <p class="muted">
+                <a href="tel:07476010070">07476010070</a><br/>
+                <a href="https://wa.me/447476010070" target="_blank" rel="noopener">WhatsApp: 07476010070</a>
+              </p>
+
               <h3>Hours</h3>
               <p class="muted">Mon–Fri 09:00–17:30</p>
             </div>
@@ -268,7 +513,6 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <div class="container foot-grid">
       <div>
@@ -278,6 +522,7 @@
         </div>
         <div style="font-size:13px; opacity:.88">© <span id="year"></span> Kingston Academy Ltd. All rights reserved.</div>
       </div>
+
       <div style="font-size:14px">
         <strong>Pages</strong><br/>
         <a href="#home">Home</a><br/>
@@ -285,6 +530,7 @@
         <a href="#jobs">Jobs</a><br/>
         <a href="#contact">Contact</a>
       </div>
+
       <div style="font-size:14px">
         <strong>Legal</strong><br/>
         <a href="#" id="openTerms">Terms &amp; Conditions</a><br/>
@@ -293,52 +539,55 @@
     </div>
   </footer>
 
-  <!-- TERMS / PRIVACY MODAL -->
   <div class="modal" id="modal">
     <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <header>
         <strong id="modalTitle">Terms &amp; Conditions</strong>
         <button class="x" aria-label="Close" onclick="Modal.close()">×</button>
       </header>
+
       <div class="body" id="modalBody">
         <h3>1. About Kingston Academy Ltd</h3>
-        <p>We provide accredited training and related services. By booking a course, you agree to these terms.</p>
-        <h3>2. Bookings &amp; payments</h3>
-        <p>Fees are payable at checkout. Places are confirmed on receipt of payment. You may transfer to another date with at least 5 working days’ notice.</p>
+        <p>We provide accredited training and related services. By making an enquiry or booking a course, you agree to these terms.</p>
+
+        <h3>2. Enquiries &amp; course arrangements</h3>
+        <p>Course dates, locations and availability will be confirmed after enquiry. We will contact learners to confirm suitable arrangements.</p>
+
         <h3>3. Attendance &amp; certification</h3>
         <p>Learners must attend all required hours and provide valid ID. Certification is issued by the awarding body on successful completion.</p>
+
         <h3>4. Cancellations &amp; refunds</h3>
-        <p>Refunds are at our discretion where statutory rights apply. No-shows are non-refundable.</p>
+        <p>Refunds are at our discretion where statutory rights apply. No-shows may be non-refundable.</p>
+
         <h3>5. Data &amp; privacy</h3>
-        <p>We process personal data to manage bookings and certification. See Privacy.</p>
+        <p>We process personal data to manage enquiries, bookings and certification. See Privacy.</p>
       </div>
     </div>
   </div>
 
 <script>
-/* ---------- DATA ---------- */
 const COURSES = [
   {
     id:"door-supervisor",
     name:"SIA Door Supervisor",
     cat:"sia",
-    price:"£399",
+    price:"Enquire",
     img:"images/course-door-supervisor.jpg",
-    desc:"Full qualification including conflict management and—where tutor-qualified—physical intervention.",
+    desc:"Full qualification including conflict management and, where tutor-qualified, physical intervention."
   },
   {
     id:"security-officer",
     name:"SIA Security Officer",
     cat:"sia",
-    price:"£299",
+    price:"Enquire",
     img:"images/course-security-officer.jpg",
-    desc:"Core guarding skills, legislation, search & incident reporting for non-DS roles."
+    desc:"Core guarding skills, legislation, search and incident reporting for non-door supervisor roles."
   },
   {
     id:"cctv-operator",
     name:"CCTV Operator (PSS)",
     cat:"cctv",
-    price:"£269",
+    price:"Enquire",
     img:"images/course-cctv-operator.jpg",
     desc:"Public Space Surveillance qualification for control room and monitoring roles."
   },
@@ -346,15 +595,15 @@ const COURSES = [
     id:"efaw",
     name:"Emergency First Aid at Work",
     cat:"firstaid",
-    price:"£99",
+    price:"Enquire",
     img:"images/course-efaw.jpg",
-    desc:"One-day course covering scene assessment, CPR/AED, and workplace first aid."
+    desc:"One-day course covering scene assessment, CPR/AED and workplace first aid."
   },
   {
     id:"aet",
     name:"Award in Education & Training (AET)",
     cat:"teaching",
-    price:"£349",
+    price:"Enquire",
     img:"images/course-aet.jpg",
     desc:"Entry-level teaching qualification for aspiring trainers and workplace instructors."
   },
@@ -362,9 +611,17 @@ const COURSES = [
     id:"cava",
     name:"Certificate in Assessing Vocational Achievement (CAVA)",
     cat:"teaching",
-    price:"£599",
+    price:"Enquire",
     img:"images/course-cava.jpg",
     desc:"Become a qualified assessor in work and classroom settings."
+  },
+  {
+    id:"cscs-green-labourer-card",
+    name:"CSCS Green Labourer Card Course",
+    cat:"construction",
+    price:"Enquire",
+    img:"images/course-cscs-green-card.jpg",
+    desc:"One-day course including Level 1 Health & Safety in a Construction Environment with exam on the day, plus CITB test support for the CSCS Green Labourer Card."
   }
 ];
 
@@ -374,9 +631,9 @@ const JOBS = [
     title:"SIA Trainer (Door Supervisor)",
     type:"trainer",
     location:"London / Hybrid",
-    pay:"£180–£220/day (contract) or £32–38k (perm)",
+    pay:"£180–£220/day or £32–38k",
     img:"images/job-sia-trainer.jpg",
-    desc:"Plan and deliver SIA DS units; assess, invigilate and maintain awarding-body compliance. AET/CAVA required; PI qualification desirable."
+    desc:"Plan and deliver SIA Door Supervisor units; assess, invigilate and maintain awarding-body compliance. AET/CAVA required; PI qualification desirable."
   },
   {
     id:"assessor-iqa",
@@ -398,20 +655,20 @@ const JOBS = [
   }
 ];
 
-/* ---------- HELPERS ---------- */
 function el(tag, attrs={}, ...children){
   const n = document.createElement(tag);
+
   for(const [k,v] of Object.entries(attrs)){
-    if(k==='class') n.className=v;
-    else if(k.startsWith('on') && typeof v==='function') n.addEventListener(k.slice(2), v);
-    else if(k==='html') n.innerHTML=v;
+    if(k === 'class') n.className = v;
+    else if(k.startsWith('on') && typeof v === 'function') n.addEventListener(k.slice(2), v);
+    else if(k === 'html') n.innerHTML = v;
     else n.setAttribute(k,v);
   }
-  children.forEach(c=> n.append(c));
+
+  children.forEach(c => n.append(c));
   return n;
 }
 
-/* ---------- COURSES RENDER ---------- */
 function courseCard(c){
   return el('article',{class:'card reveal'},
     el('img',{class:'media', src:c.img, alt:c.name}),
@@ -424,28 +681,30 @@ function courseCard(c){
       el('div',{style:'display:flex; justify-content:space-between; align-items:center; margin-top:10px'},
         el('div',{class:'price'}, c.price),
         el('div',{},
-          el('a',{href:'#contact', class:'btn brand'}, 'Enquire'),
-          ' ',
-          el('a',{href:'#courses', class:'btn', onclick:()=>alert('Checkout can be linked to Stripe or your booking system.')}, 'Book')
+          el('a',{href:'#contact', class:'btn brand'}, 'Enquire')
         )
       )
     )
   );
 }
+
 function renderCourses(){
-  const root = document.getElementById('courseCards'); root.innerHTML='';
+  const root = document.getElementById('courseCards');
+  root.innerHTML = '';
+
   const term = document.getElementById('courseSearch').value.trim().toLowerCase();
   const filt = document.getElementById('courseFilter').value;
+
   const list = COURSES.filter(c=>{
-    const okCat = (filt==='all'||c.cat===filt);
-    const okTerm = !term || (c.name.toLowerCase().includes(term) || c.desc.toLowerCase().includes(term));
+    const okCat = filt === 'all' || c.cat === filt;
+    const okTerm = !term || c.name.toLowerCase().includes(term) || c.desc.toLowerCase().includes(term);
     return okCat && okTerm;
   });
-  list.forEach(c=> root.append(courseCard(c)));
+
+  list.forEach(c => root.append(courseCard(c)));
   revealOnScroll();
 }
 
-/* ---------- JOBS RENDER ---------- */
 function jobCard(j){
   return el('article',{class:'card reveal'},
     el('img',{class:'media', src:j.img, alt:j.title}),
@@ -467,71 +726,124 @@ function jobCard(j){
     )
   );
 }
+
 function renderJobs(){
-  const root = document.getElementById('jobList'); root.innerHTML='';
+  const root = document.getElementById('jobList');
+  root.innerHTML = '';
+
   const term = document.getElementById('jobSearch').value.trim().toLowerCase();
   const filt = document.getElementById('jobFilter').value;
+
   const list = JOBS.filter(j=>{
-    const okType = (filt==='all' || j.type===filt);
-    const okTerm = !term || (j.title.toLowerCase().includes(term) || j.desc.toLowerCase().includes(term) || j.location.toLowerCase().includes(term));
+    const okType = filt === 'all' || j.type === filt;
+    const okTerm = !term || j.title.toLowerCase().includes(term) || j.desc.toLowerCase().includes(term) || j.location.toLowerCase().includes(term);
     return okType && okTerm;
   });
-  list.forEach(j=> root.append(jobCard(j)));
+
+  list.forEach(j => root.append(jobCard(j)));
   revealOnScroll();
 }
 
-/* ---------- REVEAL ON SCROLL ---------- */
 let observer;
+
 function revealOnScroll(){
   observer && observer.disconnect();
+
   observer = new IntersectionObserver(entries=>{
-    entries.forEach(e=> { if(e.isIntersecting) e.target.classList.add('show'); });
+    entries.forEach(e=>{
+      if(e.isIntersecting) e.target.classList.add('show');
+    });
   },{threshold:.12});
+
   document.querySelectorAll('.reveal').forEach(el=> observer.observe(el));
 }
 
-/* ---------- SMOOTH NAV + MOBILE ---------- */
 const nav = document.getElementById('nav');
+
 document.querySelector('.toggle').addEventListener('click', (e)=>{
   const open = nav.classList.toggle('open');
   e.currentTarget.setAttribute('aria-expanded', String(open));
 });
+
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click', e=>{
     const id = a.getAttribute('href').slice(1);
     const node = document.getElementById(id);
+
     if(node){
       e.preventDefault();
-      window.scrollTo({top: node.getBoundingClientRect().top + window.scrollY - 70, behavior:'smooth'});
+      window.scrollTo({
+        top: node.getBoundingClientRect().top + window.scrollY - 70,
+        behavior:'smooth'
+      });
       nav.classList.remove('open');
     }
   });
 });
 
-/* ---------- MODAL (Terms/Privacy) ---------- */
 const Modal = {
   node: document.getElementById('modal'),
   title: document.getElementById('modalTitle'),
   body: document.getElementById('modalBody'),
-  open(title, html){ this.title.textContent = title; this.body.innerHTML = html; this.node.classList.add('open'); },
-  close(){ this.node.classList.remove('open'); }
+
+  open(title, html){
+    this.title.textContent = title;
+    this.body.innerHTML = html;
+    this.node.classList.add('open');
+  },
+
+  close(){
+    this.node.classList.remove('open');
+  }
 };
-document.getElementById('openTerms').addEventListener('click', (e)=>{ e.preventDefault();
+
+document.getElementById('openTerms').addEventListener('click', (e)=>{
+  e.preventDefault();
   Modal.open('Terms & Conditions', document.getElementById('modalBody').innerHTML);
 });
-document.getElementById('openPrivacy').addEventListener('click', (e)=>{ e.preventDefault();
+
+document.getElementById('openPrivacy').addEventListener('click', (e)=>{
+  e.preventDefault();
+
   Modal.open('Privacy', `
     <h3>Privacy Policy</h3>
-    <p>We process personal data to manage enquiries, bookings, and certification with awarding bodies. We keep records securely and only for as long as necessary.</p>
-    <p>You can request access, correction, or deletion by emailing privacy@kingstonacademy.co.uk.</p>
+    <p>We process personal data to manage enquiries, bookings, course administration and certification with awarding bodies. We keep records securely and only for as long as necessary.</p>
+    <p>You can request access, correction or deletion by emailing info@kingstonacademy.co.uk.</p>
   `);
 });
-document.getElementById('modal').addEventListener('click', (e)=>{ if(e.target.id==='modal') Modal.close(); });
 
-/* ---------- INIT ---------- */
+document.getElementById('modal').addEventListener('click', (e)=>{
+  if(e.target.id === 'modal') Modal.close();
+});
+
+document.getElementById('contactForm').addEventListener('submit', function(e){
+  e.preventDefault();
+
+  const form = e.currentTarget;
+  const name = form.name.value.trim();
+  const email = form.email.value.trim();
+  const phone = form.phone.value.trim();
+  const topic = form.topic.value;
+  const message = form.message.value.trim();
+
+  const subject = encodeURIComponent(`Website enquiry - ${topic}`);
+  const body = encodeURIComponent(
+`Name: ${name}
+Email: ${email}
+Phone: ${phone || 'Not provided'}
+Topic: ${topic}
+
+Message:
+${message}`
+  );
+
+  window.location.href = `mailto:info@kingstonacademy.co.uk?subject=${subject}&body=${body}`;
+});
+
 renderCourses();
 renderJobs();
 revealOnScroll();
+
 document.getElementById('year').textContent = new Date().getFullYear();
 document.getElementById('courseSearch').addEventListener('input', renderCourses);
 document.getElementById('courseFilter').addEventListener('change', renderCourses);
